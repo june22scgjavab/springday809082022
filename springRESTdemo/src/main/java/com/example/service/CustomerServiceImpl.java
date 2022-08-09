@@ -42,12 +42,12 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public CustomerDTO getCustomer(Integer customerId) throws CustomerException {
-		//Optional<Customer> optional = customerRepository.findById(customerId);
-		//Customer customer = optional.orElseThrow(() -> new CustomerException("Service.CUSTOMER_NOT_FOUND"));
-		Customer customerSearched = customerRepository.findById(customerId).get();
+		Optional<Customer> optional = customerRepository.findById(customerId);
+		Customer customerSearched = optional.orElseThrow(() -> new CustomerException("Service.CUSTOMER_NOT_FOUND"));
+		/*Customer customerSearched = customerRepository.findById(customerId).get();
 		if (customerSearched == null) {
 			throw new CustomerException("Service.CUSTOMER_NOT_FOUND");
-		}
+		}*/
 		CustomerDTO customerDTO = new CustomerDTO();
 		customerDTO.setCustomerId(customerSearched.getCustomerId());
 		customerDTO.setName(customerSearched.getName());
@@ -79,7 +79,7 @@ public class CustomerServiceImpl implements CustomerService {
 	public void updateCustomer(Integer customerId, String emailId) throws CustomerException {
 		Customer customerSearched = customerRepository.findById(customerId).get();
 		if (customerSearched == null) {
-			throw new CustomerException("Service.CUSTOMER_FOUND");
+			throw new CustomerException("Service.CUSTOMER_NOT_FOUND");
 		}
 		customerSearched.setEmailId(emailId);
 	}
