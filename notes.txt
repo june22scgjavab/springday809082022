@@ -1,0 +1,200 @@
+
+
+// application.properties file ( observe )
+// log4j2.properties ( observe)
+// tablescript.sql (observe)
+// pom.xml ( observe)
+-------------------------------------------------------------------------------------------------------------------------------------
+
+@Entity   ====================> please check for @Entity
+class Employee{
+@Id
+@GeneratedValue(strategy=GenerationType.IDENTITY)
+private int employeeId;
+private String name;
+private String designation;
+private String department;
+
+// setters/getters
+// hashCode() and equals()
+// toString()
+}
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+// DTO class object is responsible for carrying the data from one layer to another
+
+public class EmployeeDTO{
+
+private int employeeId;
+private String name;
+private String designation;
+private String department;
+
+// setters/getters
+// hashCode() and equals()
+// toString()
+}
+--------------------------------------------------------------------------------------------------------------------------------------
+
+public class EmployeeException extends Exception {
+   public EmployeeException(String message){
+    super(message);
+  }
+
+}
+
+------------------------------------------------------------------------------------------------------------------------------------
+Validator valid1=new Validator();
+Validator valid2=new Validator();
+// Object creation is always an overhead. 
+// One static method will access another static method
+Validator.validate(employeeDTO);
+
+public class Validator {
+   // We dont have any attributes and member variables
+    // attributes with data or value makes the object different
+    public static void validate(EmployeeDTO employeeDTO){
+        String message=null;
+       if(validateId(employeeDTO.getemployeeId())
+       {
+             message="Validator.INVALID_ID";
+       }
+       // rest of validations 
+     
+        if(message!=null){
+            throw new EmployeeException(message);
+        }
+
+      }
+       private static boolean validateId(int id){
+         return (id<=0) ? false : true;
+       }
+
+    }
+
+   
+
+}
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+// We dont write @Repository here
+
+
+public interface EmployeeRepository implements CrudRepository<Employee,Integer){
+
+}
+-------------------------------------------------------------------------------------------------------------------------------------
+
+// CRUD operations which I will perform
+public interfacer EmployeeService {
+   Integer addEmployee(EmployeeDTO employeeDTO) throws EmployeeException;
+   EmployeeDTO searchEmployee(Integer employeeId) throws EmployeeException;
+   List<EmployeeDTO> getAllEmployees() throws EmployeeException;
+   void deleteEmployee(Integer employeeId) throws EmployeeException;
+   void updateEmployee(Integer employeeId, String email) throws EmployeeException;
+   //void updateEmployee(Intger employeeId, String desig) throws EmployeeException;
+   //void updateEmployee(Intger employeeId, String dept) throws EmployeeException;
+   //void updateEmployee(Intger employeeId, String dept,String desig) throws EmployeeException;
+   // If we have multiple data to be updated what we can plan as a parameter
+   void updateEmployee(Intger employeeId, EmployeeDTO employeeDTO) throws EmployeeException;
+}
+
+--------------------------------------------------------------------------------------------------------------------------------------
+// Pause and check the code====> The heart of your application .................................
+
+
+
+@Service
+@Transactional
+public class EmployeeServiceImpl implements EmployeeService {
+
+@Autowired
+private EmployeeRepository employeeRepository;
+
+  Integer addEmployee(EmployeeDTO employeeDTO) throws EmployeeException{
+
+  }
+
+   EmployeeDTO searchEmployee(Integer employeeId) throws EmployeeException{
+
+   }
+
+  List<EmployeeDTO> getAllEmployees() throws EmployeeException{
+
+  }
+
+   void deleteEmployee(Integer employeeId) throws EmployeeException{
+
+
+   }
+   void updateEmployee(Integer employeeId, String email) throws EmployeeException{
+
+
+   }
+
+
+}
+--------------------------------------------------------------------------------------------------------------------------------------
+
+Apache Tomcat is one of the most widely used web server.
+
+Whenever we are accessing some web applications like facebook,flipkart,amazon. Being a user we need to have a web client in our system 
+and internet connectivity. 
+
+ URL=====> https://domain_name1/index.html
+ 
+ URL=====>http://ip_address
+Address bar of the browser. 
+
+DNS ==> Domain naming server which is used to map domain name to the ip address.
+
+  domain_name1 =====>  ip_address
+  domain_name2======== ip_address
+
+http/https ====> these are protocols used to access the web applications.
+www.xyz.com======> domain names/server name . So whenever we are making a request for a web application request goes via the
+internet service provide to DNS and from DNS it is routed to the server. In the server the resource is searched and if it found
+the output is given back to the client ( web browser) and user in turn can read the content or response from the client which is
+a web browser.
+
+URL stands for Universal Resource Locator. It used by the web client to locate the web server and resource. Every resource on the web has its own unique URL. The following is an example of URL:
+
+
+Hypertext Transfer Protocol (HTTP)
+
+Within web server we have web container and web container is responsible for creating the objects of the web application related classes and also manages certain life cycle related method calls.
+
+---------------------------------------------
+Let us develop a RESTful API related Springboot application.
+1) Create a Spring Boot project.
+2) Select for the dependencies:
+   a) Spring Web
+   b) Spring Data JPA
+   c) MYSQL Driver
+   d) Spring Boot DevTools
+3) Update application.properties for the database connection.
+4) SQL script file I need to create and before I miss creating the table/tables. I will execute the script.sql.
+5) click on the package name which got create for the
+   SpringBootApplication class and create the required
+   packages.
+   com.example.entity
+   com.example.dao
+   com.exa
+
+---------------------------------------------------------
+
+@RestController==> This is required
+public class EmployeeController {
+
+}
+
+
+
+
+
+
+
+
+ 
